@@ -19,3 +19,13 @@ After setting up the enivronment, run this command:
 ~~~
 php artisan migrate:fresh --seed
 ~~~
+
+# 4. Import DATABASE
+- database name : jauzza-compro.sql
+
+# 5. Login Admin
+- admin@admin.com
+- 12345678
+
+
+
