@@ -1,145 +1,55 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('app')
 
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+@section('content')
+    <main id="main">
 
-        <!-- FONT -->
-        <link rel="dns-prefetch" href="//fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-
-        <title>{{env('APP_NAME')}}</title>
-        <style>
-            body{
-                min-height: 100vh;
-            }
-            *{
-                font-family: 'Poppins';
-                font-size: 14px;
-            }
-            .__bg-primary{
-                background-color: #4940FF;
-                color: white;
-                transition: .4s;
-            }
-
-            /* ===== Scrollbar CSS ===== */
-            /* Firefox */
-            * {
-                scrollbar-width: auto;
-                scrollbar-color: #FEFEFE #FEFEFE;
-            }
-
-            /* Chrome, Edge, and Safari */
-            *::-webkit-scrollbar {
-                width: 12px;
-                height: 12px;
-            }
-
-            *::-webkit-scrollbar-track {
-                background: #FEFEFE;
-            }
-
-            *::-webkit-scrollbar-thumb {
-                background-color: #CDCDCD;
-                border: 0px none #ffffff;
-            }
-        </style>
-    </head>
-    <body>
-        <!-- NAVBAR -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white">
-            <div class="container-fluid">
-                <a class="navbar-brand" style="font-weight: bold;" href="#">{{ env('APP_NAME') }}</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/about">Tentang Kami</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/projects">Projek</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/blogs">Blog</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/login">Login</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- END OF NAVBAR -->
-
-        <!-- CONTAINER FLUID -->
-        <div class="container">
-
-            <!-- OVERVIEW SECTION -->
-            <div class="row w-100 pt-5">
-                <div class="col-12 mb-3">
-                    <h3>Blog Kami</h3>
-                </div>
-                @foreach($blogs as $val)
-                <div class="col-3">
-                    <div class="card w-100">
-                        <img src="{{ asset('/file/'.$val->image) }}" class="card-img-top" alt="{{ $val->image }}" style="width: 100%; height:256px; object-fit: cover; border-radius: 8px;">
-                        <div class="card-body">
-                            <div class="badge __bg-primary mb-3">{{ $val->category_name }}</div>
-                            <h5 class="card-title m-0 mb-5">{{ $val->title }}</h5>
-                            <div class="d-grid">
-                                <a href="/blog/read/{{ $val->id }}" class="button btn __bg-primary text-white btn-block">Baca Sekarang</a>
-                            </div>
+        <!-- ======= Breadcrumbs ======= -->
+        <div class="breadcrumbs">
+            <div class="page-header d-flex align-items-center"
+                style="background-image: url('{{ url('file/' . $setting->image_header) }}');">
+                <div class="container position-relative">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-lg-6 text-center">
+                            <h2>Blog Kami</h2>
                         </div>
                     </div>
                 </div>
-                @endforeach
             </div>
-            <!-- END OF OVERVIEW SECTION -->
-
         </div>
-        <!-- END OF CONTAINER FLUID -->
+        <!-- End Breadcrumbs -->
 
-        <!-- FOOTER -->
-        <nav class="navbar sticky-bottom bg-dark">
-            <div class="container-fluid d-lfex justify-content-between p-5 text-white">
-                <div class="links w-25 d-flex flex-column">
-                    <a class="navbar-brand text-white" href="#">{{ env('APP_NAME') }}</a>
-                    <a class="mt-2 text-white text-decoration-none" href="/home">Home</a>
-                    <a class="mt-2 text-white text-decoration-none" href="/about">Tentang Kami</a>
-                    <a class="mt-2 text-white text-decoration-none" href="/projects">Projek</a>
-                    <a class="mt-2 text-white text-decoration-none" href="/blogs">Blog</a>
-                </div>
-                <div class="contacts w-25">
-                    <h5 class="fw-bold">Contact Us</h5>
-                    <p>{!! $footer->contact_detail !!}</p>
-                </div>
-                <div class="socials w-25">
-                    <h5 class="fw-bold">Our Social Media</h5>
-                    <div class="row mt-2">
-                        @foreach($links as $key => $val)
-                        <div class="col-3">
-                            <a href="{{ $val->link }}">
-                                <img src="{{ asset('/file/'.$val->image) }}" alt="{{$val->image}}" style="width: 40px; height: 40px; object-fit: contain;">
-                            </a>
-                        </div>
+        <!-- ======= Portfolio Section ======= -->
+        <section id="portfolio" class="portfolio sections-bg">
+            <div class="container" data-aos="fade-up">
+
+                <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry"
+                    data-portfolio-sort="original-order" data-aos="fade-up" data-aos-delay="100">
+
+                    <div class="row gy-4 portfolio-container">
+
+                        @foreach($blogs as $row)
+                            
+                            <div class="col-xl-4 col-md-6 portfolio-item {{ strtolower(str_replace(' ', '-', $row->category_name)) }}">
+                                <div class="portfolio-wrap">
+                                    <a href="{{ url('file/'.$row->image) }}" data-gallery="portfolio-gallery-app" class="glightbox">
+                                        <img src="{{ url('file/'.$row->image) }}" class="w-100" alt="">
+                                    </a>
+                                    <div class="portfolio-info">
+                                        <span class="badge bg-info mb-3">{{ $row->category_name }}</span>
+                                        <h4>{{ $row->title }}</h4>
+                                        <a href="/blog/read/{{ $row->id }}" class="btn btn-primary d-block btn-block">Baca Sekarang</a>
+                                    </div>
+                                </div>
+                            </div><!-- End Portfolio Item -->
+
                         @endforeach
-                    </div>
-                </div>
-            </div>
-        </nav>
-        <!-- END OF FOOTER -->
 
-        <!-- Option 1: Bootstrap Bundle with Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    </body>
-</html>
+                    </div><!-- End Portfolio Container -->
+
+                </div>
+
+            </div>
+        </section><!-- End Portfolio Section -->
+
+    </main>
+@endsection

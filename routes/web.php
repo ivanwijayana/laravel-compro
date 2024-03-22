@@ -14,6 +14,7 @@ use App\Http\Controllers\LayananController;
 use App\Http\Controllers\MapsController;
 use App\Http\Controllers\ProjectCategoryController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +45,7 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
     Route::resource('/gallery', GalleryController::class);
     Route::resource('/maps', MapsController::class);
     Route::resource('/about', AboutController::class);
+    Route::resource('/setting', SettingController::class);
     Route::resource('/project-category', ProjectCategoryController::class);
     Route::resource('/project', ProjectController::class);
     Route::resource('/blog-category', BlogCategoryController::class);

@@ -76,6 +76,11 @@
                             <i data-feather="list"></i> <span class="ms-1">Footer</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/admin/setting" class="nav-link text-white align-middle @if(\Request::route()->getName() == 'setting.index') __bg-primary @endif">
+                            <i data-feather="settings"></i> <span class="ms-1">Setting Website</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
